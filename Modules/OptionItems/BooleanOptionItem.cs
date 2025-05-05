@@ -40,6 +40,17 @@ namespace TheDarkRoles
             return opt;
         }
 
+        public static BooleanOptionItem Create(
+            SimpleRoleInfo roleInfo, int idOffset, String name, bool defaultValue, bool isSingleValue, OptionItem parent = null
+        )
+        {
+            var opt = new BooleanOptionItem(
+                roleInfo.ConfigId + idOffset, name, defaultValue, roleInfo.Tab, isSingleValue
+            );
+            opt.SetParent(parent ?? roleInfo.RoleOption);
+            return opt;
+        }
+
         // Getter
         public override string GetString()
         {

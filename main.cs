@@ -268,6 +268,7 @@ namespace TheDarkRoles
         Infected,
         Disconnected,
         Fall,
+        Hit,
         etc = -1
     }
     //WinData
