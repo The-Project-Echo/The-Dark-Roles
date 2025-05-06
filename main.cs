@@ -1,3 +1,7 @@
+#if UNITY_EDITOR
+[assembly: UnityEngine.Scripting.Preserve]
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +17,8 @@ using UnityEngine;
 using TheDarkRoles.Attributes;
 using TheDarkRoles.Roles.Core;
 using TheDarkRoles.Modules;
+using ImGuiNET;
+using Il2CppInterop.Runtime;
 
 [assembly: AssemblyFileVersionAttribute(TheDarkRoles.Main.PluginVersion)]
 [assembly: AssemblyInformationalVersionAttribute(TheDarkRoles.Main.PluginVersion)]
@@ -145,6 +151,7 @@ namespace TheDarkRoles
         public static IEnumerable<PlayerControl> AllPlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null);
         public static IEnumerable<PlayerControl> AllAlivePlayerControls => PlayerControl.AllPlayerControls.ToArray().Where(p => p != null && p.IsAlive());
 
+
         public static Main Instance;
 
         public override void Load()
@@ -164,6 +171,9 @@ namespace TheDarkRoles
             TheDarkRoles.Logger.Disable("ReceiveRPC");
             TheDarkRoles.Logger.Disable("SwitchSystem");
             TheDarkRoles.Logger.Disable("CustomRpcSender");
+
+
+
             //TheDarkRoles.Logger.isDetail = true;
 
             // 認証関連-初期化
@@ -246,6 +256,8 @@ namespace TheDarkRoles
             ClassInjector.RegisterTypeInIl2Cpp<ErrorText>();
 
             SystemEnvironment.SetEnvironmentVariables();
+
+            HostFunctions.showMenu = true;
 
             Harmony.PatchAll();
             Application.quitting += new Action(Utils.SaveNowLog);
