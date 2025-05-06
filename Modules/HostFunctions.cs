@@ -17,7 +17,7 @@ namespace TheDarkRoles.Modules
     {
         public HostFunctions(IntPtr ptr) : base(ptr) { }
 
-    private readonly string[] colorOptions = { "Red", "Blue", "Green", "Pink", "Orange", "Yellow", "Black", "White",
+        private readonly string[] colorOptions = { "Red", "Blue", "Green", "Pink", "Orange", "Yellow", "Black", "White",
         "Purple", "Brown", "Cyan", "Lime", "Maroon", "Rose", "Banana", "Gray", "Tan", "Coral"};
         private string colorChanger = "Color Changer";
         private GUIContent[] cachedColorOptions;
@@ -53,7 +53,6 @@ namespace TheDarkRoles.Modules
 
         void Update()
         {
-            Logger.Info("[HostFunctions] Update called!", "HostFunctions");
             if (Input.GetKeyDown(KeyCode.RightShift))
                 showMenu = !showMenu;
         }
@@ -68,8 +67,13 @@ namespace TheDarkRoles.Modules
                     showMenu = !showMenu;
 
                 if (GameStates.IsMeeting || GameStates.IsCountDown || GameStates.IsInGame)
-                    GUILayout.Label("Game Controls", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.UpperCenter, normal =
-                        { textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f) }, fontSize = 14 });
+                    GUILayout.Label("Game Controls", new GUIStyle(GUI.skin.label)
+                    {
+                        alignment = TextAnchor.UpperCenter,
+                        normal =
+                        { textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f) },
+                        fontSize = 14
+                    });
 
                 if (GameStates.IsInGame)
                     if (GUILayout.Button("End Game", ButtonStyle()))
@@ -91,11 +95,16 @@ namespace TheDarkRoles.Modules
 
                 if (GameStates.IsLobby)
                 {
-                    GUILayout.Label("Host Color Changer", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.UpperCenter, normal =
-                        { textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f)}, fontSize = 14});
+                    GUILayout.Label("Host Color Changer", new GUIStyle(GUI.skin.label)
+                    {
+                        alignment = TextAnchor.UpperCenter,
+                        normal =
+                        { textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f)},
+                        fontSize = 14
+                    });
 
                     if (GUILayout.Button(colorChanger, ButtonStyle())) _showDropdown = !_showDropdown;
-                    
+
                     if (_showDropdown)
                     {
                         //GUI.Box(new Rect(4, 100, 292, 1), "", new GUIStyle()
@@ -116,12 +125,28 @@ namespace TheDarkRoles.Modules
             };
             GUILayout.Window(0, new Rect(10, 10, 300, 200), value, "Project Echo: Host Functions", new GUIStyle()
             {
-                normal = { background = windowTexture, textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f)}, fontSize = 16 ,
-                alignment = TextAnchor.UpperCenter, padding = { left = 0, right = 0, top = 4, bottom = 4 },
+                normal = { background = windowTexture, textColor = new Color(1.0f, 0.87f, 0.96f, 0.4f) },
+                fontSize = 16,
+                alignment = TextAnchor.UpperCenter,
+                padding = { left = 0, right = 0, top = 4, bottom = 4 },
             });
         }
+        void OnDestroy()
+        {
+            if (buttonTexture != null)
+                Destroy(buttonTexture);
+            if (boxTexture != null)
+                Destroy(boxTexture);
+            if (sepTexture != null)
+                Destroy(sepTexture);
+            if (hoveredButtonTexture != null)
+                Destroy(hoveredButtonTexture);
+            if (labelTexture != null)
+                Destroy(labelTexture);
 
-        private unsafe void RenderImGuiSafe()
+        }
+
+        private unsafe void RenderImGui()
         {
             try
             {
@@ -130,16 +155,8 @@ namespace TheDarkRoles.Modules
             }
             catch (Exception e)
             {
-                TheDarkRoles.Logger.Error($"Render error: {e}", "HostFunctions");
+                Logger.Error($"Render error: {e}", "HostFunctions");
             }
-        }
-
-        void OnDestroy()
-        {
-            if (buttonTexture != null)
-                Destroy(buttonTexture);
-            if (boxTexture != null)
-                Destroy(boxTexture);
         }
 
         private GUIStyle ButtonStyle()

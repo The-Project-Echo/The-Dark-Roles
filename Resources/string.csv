@@ -44,6 +44,7 @@ Egoist,"Egoist"
 Lovers,"Lovers"
 Jackal,"Jackal"
 PlagueDoctor,"Plague Doctor"
+"Agent","Agent"
 
 "# Impostor Roles"
 BountyHunter,"Bounty Hunter"
@@ -128,6 +129,7 @@ EgoistInfo,"Take over the Impostors' victory"
 LoversInfo,"Live happily ever after, together"
 JackalInfo,"Kill Everyone"
 PlagueDoctorInfo,"Spread disease to wipe out the crew"
+AgentInfo,"It’s not personal. It’s just business."
 
 "# Impostor Roles Info"
 BountyHunterInfo,"Eliminate your target"
@@ -183,6 +185,7 @@ OpportunistInfoLong,"So long as you are alive at the end of the game, you will w
 EgoistInfoLong,"When all impostors are dead, you solo victory by fulfilling impostor victory conditions.\nYou and the impostors know who each other are."
 JackalInfoLong,"Jackal can kill all Crewmates, Impostors and Neutrals.\nTeam Jackal wins when living Jackal outnumbers living Crewmates and when there are no Impostors alive."
 PlagueDoctorInfoLong,"The Plague Doctor's goal is to infect every living player.\nThey start by choosing one player to infect, after which anyone who spends a set\namount of time in range of the infected player becomes infected themselves.\nInfection progress is cumulative, and does not reset with distance or after meetings."
+AgentInfoLong,"As the Agent, your job is to mark players to hit. When a meeting is called those players have a chance to die."
 
 "# Impostor Roles Info Long"
 BountyHunterInfoLong,"If you kill your indicated target, your next kill cooldown will be greatly reduced.\nIf you kill anyone other than your target, your next kill cooldown will increase.\nThe target swaps after a configurable amount of time."
@@ -406,6 +409,9 @@ ExecutionerCanTargetNeutralKiller,"Can Target Neutrals"
 ExecutionerChangeRolesAfterTargetKilled,"Role Changes When Target Dies"
 ArsonistDouseTime,"Time Until Douse Complete"
 CanTerroristSuicideWin,"Can Win By Suicide"
+AgentMarkCooldown,"Mark Cooldown"
+AgentCanVent,"Can Vent?"
+
 
 "# Impostor Role Settings"
 BountyTargetChangeTime,"Time Until Target Swaps"
